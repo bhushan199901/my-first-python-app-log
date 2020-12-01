@@ -26,14 +26,6 @@
         <a class="nav-link" href="{{url_for('core.info')}}">ABOUT<span class="sr-only">(current)</span></a>
       </li>
 
-        <li class="nav-item active">
-        <a class="nav-link" href="{{url_for('users.register')}}">REGISTER<span class="sr-only">(current)</span></a>
-      </li>
-
-        <li class="nav-item active">
-        <a class="nav-link" href="{{url_for('users.login')}}">LOGIN<span class="sr-only">(current)</span></a>
-      </li>
-
       {% if current_user.is_authenticated %}
       <li class="nav-item active">
         <a class="nav-link" href="{{url_for('users.account')}}">ACCOUNT<span class="sr-only">(current)</span></a>
@@ -45,6 +37,16 @@
 
         <li class="nav-item active">
         <a class="nav-link" href="{{url_for('blog_posts.create_post')}}">CREATE POST<span class="sr-only">(current)</span></a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('users.register')}}">REGISTER<span class="sr-only">(current)</span></a>
+      </li>
+
+        <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('users.login')}}">LOGIN<span class="sr-only">(current)</span></a>
       </li>
 
       {% endif %}
