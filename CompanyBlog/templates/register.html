@@ -1,16 +1,29 @@
 {% extends 'base.html'%}
 {% block content %}
 <br>
+<div class="container">
+<div class="col d-flex justify-content-center" >
+<div class="card bg-light mb-2" align="centre" style="max-width: 80rem;">
+  <div class="card-header" align="center">Register Now!!</div>
+    <div class="card text-left">
     <form method="POST">
         {{form.hidden_tag()}}
-        {{form.Email.label}} {{form.Email}}
+        <br>{{form.Email.label(class="form-group ")}} {{form.Email(class=" .col -7")}}
+        {{form.Username.label(class="form-group")}} {{form.Username(class=" .col -7")}}
         <br>
-        {{form.Username.label}} {{form.Username}}
+        {{form.password.label(class="form-group")}} {{form.password(class=" .col -7")}}
         <br>
-        {{form.password.label}} {{form.password}}
-        {{form.pass_confirm.label}} {{form.pass_confirm}}
+        {{form.pass_confirm.label(class="form-group")}} {{form.pass_confirm(class=" .col -7")}}
         <br>
-        {{form.Submit()}}
+        <div align="center">
+        {{form.Submit(class="btn btn-success")}}
+            <div>
     </form>
+</div>
+</div>
+</div>
+
+</div>
+
 {% endblock %}
 
