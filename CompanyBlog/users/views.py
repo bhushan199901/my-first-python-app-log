@@ -67,7 +67,7 @@ def account():
             flash('user account updated')
             return redirect(url_for('users.account'))
 
-        elif request.method == "GET":
+    elif request.method == "GET":
             form.Username.data = current_user.username
             form.Email.data = current_user.email
 
