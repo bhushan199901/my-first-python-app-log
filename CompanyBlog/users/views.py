@@ -31,15 +31,18 @@ def register():
 # login
 @users.route('/login', methods=['GET','POST'])
 def login():
+    message = ""
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if User.check_password(user, password=form.password.data) and user is not None:
             login_user(user)
-            flash('Login Success',)
+            message = "Login Success"
             return redirect(url_for('core.index'))
+        else:
+            message = "Values entered is not correct"
 
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, error=message)
 
 # logout
 @users.route('/logout')

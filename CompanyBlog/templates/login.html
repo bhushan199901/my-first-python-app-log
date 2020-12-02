@@ -1,7 +1,13 @@
 {% extends 'base.html'%}
 {% block content %}
-
-
+{% if error %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{error}}!!</strong>Please try again
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
 <div class="card bg-light mb-2" align="centre" style="width: 24em;margin:0 auto;">
   <div class="card-header" align="center">Log in!!</div>
     <div class="card text-left">
