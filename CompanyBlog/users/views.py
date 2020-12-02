@@ -34,12 +34,15 @@ def login():
     message = ""
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if User.check_password(user, password=form.password.data) and user is not None:
-            login_user(user)
-            message = "Login Success"
-            return redirect(url_for('core.index'))
-        else:
+        try:
+            user = User.query.filter_by(email=form.email.data).first()
+            if User.check_password(user, password=form.password.data) and user is not None:
+                login_user(user)
+                message = "Login Success"
+                return redirect(url_for('core.index'))
+            else:
+                message = "wrong password"
+        except AttributeError:
             message = "Values entered is not correct"
 
     return render_template('login.html', form=form, error=message)
