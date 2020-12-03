@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Welcome to our donation page </h1>
+    <h2>Would you like to make a donation ? (Just to test the functionality ) </h2>
+    <form action="{{url_for('core.payment')}}" method="POST">
+        <script
+        src = "https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="{{public_key}}"
+        data-amount="1000"
+        data-name="Donation test"
+        data-description="Donation site"
+        data-locale="auto"
+        data-zip-code="true"></script>
+    </form>
+</div>
+{% endblock %}

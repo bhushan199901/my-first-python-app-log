@@ -5,6 +5,7 @@ from CompanyBlog import db
 from CompanyBlog.models import User, BlogPost
 from CompanyBlog.users.forms import Register, LoginForm, Update
 from CompanyBlog.users.picture_handler import add_profilepic
+from sqlalchemy.exc import IntegrityError
 
 users = Blueprint('users', __name__)
 
@@ -13,19 +14,22 @@ users = Blueprint('users', __name__)
 
 @users.route('/register',methods=['GET', 'POST'])
 def register():
+    message = ""
     form = Register()
 
     if form.validate_on_submit():
         user = User(email=form.Email.data,
                     username=form.Username.data,
                     password=form.password.data)
+        try:
+            db.session.add(user)
+            db.session.commit()
+            flash('Thanks for registering')
+            return redirect(url_for('users.login'))
+        except IntegrityError:
+            message = "username or email id already exists !!"
 
-        db.session.add(user)
-        db.session.commit()
-        flash('Thanks for registering')
-        return redirect(url_for('users.login'))
-
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, message=message)
 
 
 # login
